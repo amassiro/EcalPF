@@ -11,6 +11,7 @@
 <use name="CondFormats/EcalObjects"/>
 <use name="CondFormats/DataRecord"/>
 <use name="CalibCalorimetry/EcalLaserCorrection"/>
+<use name="CalibCalorimetry/EcalTPGTools"/>
 
 <use name="Geometry/EcalMapping"/>
 <use name="Geometry/CaloTopology"/>

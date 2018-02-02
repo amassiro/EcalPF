@@ -112,6 +112,9 @@
 
 
 
+//---- for SR flags
+#include "CalibCalorimetry/EcalTPGTools/interface/EcalReadoutTools.h"
+
 
 
 
@@ -140,7 +143,12 @@ private:
   // ----------member data ---------------------------
  
   edm::EDGetTokenT<reco::PFRecHitCollection> _token_pfrechits;
-    
+  
+  edm::EDGetTokenT<EBSrFlagCollection> _token_ebSrFlag;
+  edm::EDGetTokenT<EESrFlagCollection> _token_eeSrFlag;
+  
+  
+  
   TTree *outTree;
   
   UInt_t _run;
@@ -181,6 +189,9 @@ TreeProducerPFrechits::TreeProducerPFrechits(const edm::ParameterSet& iConfig)
   edm::Service<TFileService> fs;
   
   _token_pfrechits = consumes<reco::PFRecHitCollection>(iConfig.getParameter<edm::InputTag>("ParticleFlowRecHitECALCollectionTag"));
+  
+  _token_ebSrFlag = consumes<EBSrFlagCollection>(iConfig.getParameter<edm::InputTag>("ebSrFlagLabel"));
+  _token_eeSrFlag = consumes<EESrFlagCollection>(iConfig.getParameter<edm::InputTag>("eeSrFlagLabel"));
   
   
   outTree = fs->make<TTree>("tree","tree");
@@ -223,7 +234,13 @@ TreeProducerPFrechits::analyze(const edm::Event& iEvent, const edm::EventSetup& 
   _event = iEvent.eventAuxiliary().event();
   
   
-    
+  //---- geometry 
+  
+  edm::ESHandle<CaloGeometry> pGeometry;
+  iSetup.get<CaloGeometryRecord>().get(pGeometry);
+  const CaloGeometry *geometry = pGeometry.product();
+  
+  
   
   //---- pfrechits
   
@@ -233,24 +250,83 @@ TreeProducerPFrechits::analyze(const edm::Event& iEvent, const edm::EventSetup& 
 //   assert(pfrecHithandle.isValid());
   pfrechits = pfrecHithandle.product();
   
-  std::cout << " ~~ " << std::endl;
-  std::cout << " > pfrechits->size() = " << pfrechits->size() << std::endl;
+  
+  for (int ixtal=0; ixtal < 61200+14648; ixtal++) {
+    _energy[ixtal] = -99;
+    _eta[ixtal] = -99;
+    _phi[ixtal] = -99;
+    _flag[ixtal] = -99;
+  }
+  
+  
+  
+  
+  // Selective Readout Flags (Thanks Shilpi for the code snippet!)
+  edm::Handle<EBSrFlagCollection> ebSrFlags;   
+  edm::Handle<EESrFlagCollection> eeSrFlags;  
+  iEvent.getByToken(_token_ebSrFlag, ebSrFlags);  
+  iEvent.getByToken(_token_eeSrFlag, eeSrFlags);
+  
+  EcalReadoutTools readoutTool(iEvent, iSetup);
+  
+  
+  
+  
+//   std::cout << " ~~ " << std::endl;
+//   std::cout << " > pfrechits->size() = " << pfrechits->size() << std::endl;
     
   for (reco::PFRecHitCollection::const_iterator itrechit = pfrechits->begin(); itrechit != pfrechits->end(); itrechit++ ) {
     std::cout << "        itrechit->detId() " << itrechit->detId() << " energy = " << itrechit->energy() << std::endl;
-    std::cout << "                   itrechit->hasCaloCell()  " << itrechit->hasCaloCell() << std::endl;
-    if (itrechit->hasCaloCell()) {
-      std::cout << "                   itrechit->caloCell().etaPos()  " << itrechit->caloCell().etaPos() << std::endl;
-      std::cout << "                   itrechit->caloCell().phiPos()  " << itrechit->caloCell().phiPos() << std::endl;
-    }
+//     std::cout << "                   itrechit->hasCaloCell()  " << itrechit->hasCaloCell() << std::endl;
+//     if (itrechit->hasCaloCell()) {
+//       std::cout << "                   itrechit->caloCell().etaPos()  " << itrechit->caloCell().etaPos() << std::endl;
+//       std::cout << "                   itrechit->caloCell().phiPos()  " << itrechit->caloCell().phiPos() << std::endl;
+//     }
+    
+      if ( itrechit->detId() < 872420480 ) {
+//         std::cout << " EB " << std::endl;
+//         838904321
+//         838970216
+        _energy[EBDetId(itrechit->detId()).hashedIndex()] =  itrechit->energy(); 
+        _eta[EBDetId(itrechit->detId()).hashedIndex()] = (EBDetId(itrechit->detId()).ieta());
+        _phi[EBDetId(itrechit->detId()).hashedIndex()] = (EBDetId(itrechit->detId()).iphi());
+        
+        auto ecalUnit = readoutTool.readOutUnitOf(EBDetId(itrechit->detId()));
+        EBSrFlagCollection::const_iterator srf = ebSrFlags->find(ecalUnit);      
+        if (srf != ebSrFlags->end()) {
+          _flag[EBDetId(itrechit->detId()).hashedIndex()] = (srf->value());
+        }
+        
+        
+      }
+      else {
+//         std::cout << " EE " << std::endl;
+        //       872420481
+        //       872439396
+        _energy[EEDetId(itrechit->detId()).hashedIndex()+61200] =  itrechit->energy(); 
+
+        GlobalPoint mycell = geometry -> getPosition(DetId(itrechit->detId()));
+        _eta[EEDetId(itrechit->detId()).hashedIndex()+61200] = mycell.eta();
+        _phi[EEDetId(itrechit->detId()).hashedIndex()+61200] = mycell.phi();
+       
+        auto ecalUnit = readoutTool.readOutUnitOf(EEDetId(itrechit->detId()));
+        EESrFlagCollection::const_iterator srf = eeSrFlags->find(ecalUnit);      
+        if (srf != eeSrFlags->end()) {
+          _flag[EEDetId(itrechit->detId()).hashedIndex()+61200] = (srf->value());
+        }
+        
+      }
     
     
+   
+   
+   
     
     
 //     _energy[DetId(itrechit->detId()).hashedIndex()] =  itrechit->energy();    
   }
   
-  std::cout << " ~~ " << std::endl;
+//   std::cout << " ~~ " << std::endl;
   
   
   

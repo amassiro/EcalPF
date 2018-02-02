@@ -47,8 +47,13 @@ process.GlobalTag = GlobalTag(process.GlobalTag, '90X_upgrade2017_realistic_v20'
 
 process.TreeProducerPFrechits = cms.EDAnalyzer('TreeProducerPFrechits',
                             ParticleFlowRecHitECALCollectionTag     = cms.InputTag("particleFlowRecHitECAL:Cleaned"),
+                            ebSrFlagLabel     = cms.InputTag("ecalDigis"),
+                            eeSrFlagLabel     = cms.InputTag("ecalDigis"),
                            )
 
+
+#edm::SortedCollection<EBSrFlag,edm::StrictWeakOrdering<EBSrFlag> >    "ecalDigis"                 ""                "RECO"    
+#edm::SortedCollection<EESrFlag,edm::StrictWeakOrdering<EESrFlag> >    "ecalDigis"                 ""                "RECO"    
 
 
 
