@@ -237,7 +237,16 @@ TreeProducerPFrechits::analyze(const edm::Event& iEvent, const edm::EventSetup& 
   std::cout << " > pfrechits->size() = " << pfrechits->size() << std::endl;
     
   for (reco::PFRecHitCollection::const_iterator itrechit = pfrechits->begin(); itrechit != pfrechits->end(); itrechit++ ) {
-    std::cout << "        itrechit->detId() " << itrechit->detId() << std::endl;
+    std::cout << "        itrechit->detId() " << itrechit->detId() << " energy = " << itrechit->energy() << std::endl;
+    std::cout << "                   itrechit->hasCaloCell()  " << itrechit->hasCaloCell() << std::endl;
+    if (itrechit->hasCaloCell()) {
+      std::cout << "                   itrechit->caloCell().etaPos()  " << itrechit->caloCell().etaPos() << std::endl;
+      std::cout << "                   itrechit->caloCell().phiPos()  " << itrechit->caloCell().phiPos() << std::endl;
+    }
+    
+    
+    
+    
 //     _energy[DetId(itrechit->detId()).hashedIndex()] =  itrechit->energy();    
   }
   
