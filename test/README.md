@@ -19,9 +19,9 @@ Plot
 
     TTree* tree = (TTree*) _file0->Get("TreeProducerPFrechits/tree")
  
-    tree ->Draw("energy:eta", "energy>0", "colz");
+    tree ->Draw("energy:eta", "energy>0 && energy < 20", "colz");
     
-    tree ->Draw("energy:eta", "energy>0 && flag==0", "colz");  --> never
-    tree ->Draw("energy:eta", "energy>0 && flag==1", "colz");
-    tree ->Draw("energy:eta", "energy>0 && flag==3", "colz");
+    tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==0", "colz");
+    tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==1", "colz");
+    tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==3", "colz");
  

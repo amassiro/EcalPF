@@ -159,6 +159,7 @@ private:
   float _eta[61200+14648];
   float _phi[61200+14648];
   int _flag[61200+14648];
+  int _number[61200+14648];
   
 //   
 //   vector<reco::PFRecHit>                "particleFlowRecHitECAL"    "Cleaned"         "RECO"    
@@ -201,9 +202,10 @@ TreeProducerPFrechits::TreeProducerPFrechits(const edm::ParameterSet& iConfig)
   outTree->Branch("bx",                &_bx,              "bx/s");
   outTree->Branch("event",             &_event,           "event/i");
   outTree->Branch("energy",       _energy,    "energy[75848]/F");
-  outTree->Branch("eta",       _eta,    "eta[75848]/F");
-  outTree->Branch("phi",       _phi,    "phi[75848]/F");
+  outTree->Branch("eta",         _eta,    "eta[75848]/F");
+  outTree->Branch("phi",         _phi,    "phi[75848]/F");
   outTree->Branch("flag",       _flag,    "flag[75848]/I");
+  outTree->Branch("number",   _number,    "number[75848]/I");
   
   
   
@@ -256,6 +258,7 @@ TreeProducerPFrechits::analyze(const edm::Event& iEvent, const edm::EventSetup& 
     _eta[ixtal] = -99;
     _phi[ixtal] = -99;
     _flag[ixtal] = -99;
+    _number[ixtal] = ixtal;
   }
   
   
