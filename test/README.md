@@ -21,7 +21,14 @@ Plot
  
     tree ->Draw("energy:eta", "energy>0 && energy < 20", "colz");
     
-    tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==0", "colz");
-    tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==1", "colz");
-    tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==3", "colz");
- 
+    tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==0 && number < 61200", "colz");
+    tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==1 && number < 61200", "colz");
+    tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==3 && number < 61200", "colz");
+
+    
+    tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==0 && number >= 61200", "colz");
+    tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==1 && number >= 61200", "colz");
+    tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==3 && number >= 61200", "colz");
+
+    
+    tree ->Draw("number<61200", "energy>0");
