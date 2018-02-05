@@ -340,6 +340,7 @@ TreeProducerPFrechits::analyze(const edm::Event& iEvent, const edm::EventSetup& 
       EBSrFlagCollection::const_iterator srf = ebSrFlags->find(ecalUnit);      
       if (srf != ebSrFlags->end()) {
         _seed_flag[ebseed.hashedIndex()] = srf->value();
+        if (srf->value() < 1) std::cout << " srf->value() = " << srf->value() << std::endl;
       }
     } else {
       EEDetId eeseed(pfc.seed());
@@ -347,6 +348,7 @@ TreeProducerPFrechits::analyze(const edm::Event& iEvent, const edm::EventSetup& 
       EESrFlagCollection::const_iterator srf = eeSrFlags->find(ecalUnit);      
       if (srf != eeSrFlags->end()) {
         _seed_flag[eeseed.hashedIndex()+61200] = srf->value();
+        if (srf->value() < 1) std::cout << " srf->value() = " << srf->value() << std::endl;
       }
     }
     

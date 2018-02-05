@@ -82,6 +82,9 @@ Plot
     
     tree0 ->Draw("seed_flag", "seed_energy>0 && seed_number >= 61200");
     
+    tree0 ->Draw("seed_flag", "seed_energy>0");
+    tree0 ->Draw("seed_flag", "seed_flag>-50");
+    
     
     
     
