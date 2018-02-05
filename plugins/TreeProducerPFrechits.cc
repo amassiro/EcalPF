@@ -83,6 +83,10 @@
 #include "DataFormats/ParticleFlowReco/interface/PFRecHitFwd.h"
 #include "DataFormats/ParticleFlowReco/interface/PFRecHit.h"
 
+//--- pfcluster
+#include "DataFormats/ParticleFlowReco/interface/PFClusterFwd.h"
+#include "DataFormats/ParticleFlowReco/interface/PFCluster.h"
+
 
 
 //---- for TP
@@ -147,6 +151,8 @@ private:
   edm::EDGetTokenT<EBSrFlagCollection> _token_ebSrFlag;
   edm::EDGetTokenT<EESrFlagCollection> _token_eeSrFlag;
   
+  edm::EDGetTokenT<reco::PFClusterCollection> _token_pfcluster;
+  
   
   
   TTree *outTree;
@@ -160,6 +166,13 @@ private:
   float _phi[61200+14648];
   int _flag[61200+14648];
   int _number[61200+14648];
+
+
+  float _seed_energy[61200+14648];
+  float _seed_eta[61200+14648];
+  float _seed_phi[61200+14648];
+  int _seed_flag[61200+14648];
+  int _seed_number[61200+14648];
   
 //   
 //   vector<reco::PFRecHit>                "particleFlowRecHitECAL"    "Cleaned"         "RECO"    
@@ -194,6 +207,8 @@ TreeProducerPFrechits::TreeProducerPFrechits(const edm::ParameterSet& iConfig)
   _token_ebSrFlag = consumes<EBSrFlagCollection>(iConfig.getParameter<edm::InputTag>("ebSrFlagLabel"));
   _token_eeSrFlag = consumes<EESrFlagCollection>(iConfig.getParameter<edm::InputTag>("eeSrFlagLabel"));
   
+  _token_pfcluster = consumes<reco::PFClusterCollection>(iConfig.getParameter<edm::InputTag>("pfClusterTag"));
+  
   
   outTree = fs->make<TTree>("tree","tree");
   
@@ -202,10 +217,16 @@ TreeProducerPFrechits::TreeProducerPFrechits(const edm::ParameterSet& iConfig)
   outTree->Branch("bx",                &_bx,              "bx/s");
   outTree->Branch("event",             &_event,           "event/i");
   outTree->Branch("energy",       _energy,    "energy[75848]/F");
-  outTree->Branch("eta",         _eta,    "eta[75848]/F");
-  outTree->Branch("phi",         _phi,    "phi[75848]/F");
-  outTree->Branch("flag",       _flag,    "flag[75848]/I");
-  outTree->Branch("number",   _number,    "number[75848]/I");
+  outTree->Branch("eta",             _eta,    "eta[75848]/F");
+  outTree->Branch("phi",             _phi,    "phi[75848]/F");
+  outTree->Branch("flag",           _flag,    "flag[75848]/I");
+  outTree->Branch("number",       _number,    "number[75848]/I");
+  
+  outTree->Branch("seed_energy",   _seed_energy,        "seed_energy[75848]/F");
+  outTree->Branch("seed_eta",         _seed_eta,        "seed_eta[75848]/F");
+  outTree->Branch("seed_phi",         _seed_phi,        "seed_phi[75848]/F");
+  outTree->Branch("seed_flag",       _seed_flag,        "seed_flag[75848]/I");
+  outTree->Branch("seed_number",   _seed_number,        "seed_number[75848]/I");
   
   
   
@@ -259,6 +280,13 @@ TreeProducerPFrechits::analyze(const edm::Event& iEvent, const edm::EventSetup& 
     _phi[ixtal] = -99;
     _flag[ixtal] = -99;
     _number[ixtal] = ixtal;
+
+    _seed_energy[ixtal] = -99;
+    _seed_eta[ixtal] = -99;
+    _seed_phi[ixtal] = -99;
+    _seed_flag[ixtal] = -99;
+    _seed_number[ixtal] = ixtal;
+    
   }
   
   
@@ -271,6 +299,101 @@ TreeProducerPFrechits::analyze(const edm::Event& iEvent, const edm::EventSetup& 
   iEvent.getByToken(_token_eeSrFlag, eeSrFlags);
   
   EcalReadoutTools readoutTool(iEvent, iSetup);
+  
+  
+  
+  //---- pf cluster collection
+  
+  edm::Handle<reco::PFClusterCollection> pfClustersHanlde;
+  iEvent.getByToken(_token_pfcluster,pfClustersHanlde);
+  
+  for (auto&& pfc : *pfClustersHanlde) {
+    
+    ///ieta, iphi
+    //find seed crystal indices
+    bool iseb = (pfc.layer()) == (PFLayer::ECAL_BARREL);
+    
+    int index_number = 0;
+    
+    if (iseb) {
+      EBDetId ebseed(pfc.seed());
+      _seed_eta[ebseed.hashedIndex()] = ebseed.ieta();
+      _seed_phi[ebseed.hashedIndex()] = ebseed.iphi();
+//       _seed_energy[ebseed.hashedIndex()] = pfc.seed().energy();
+      index_number = ebseed.hashedIndex();
+     } else {
+      EEDetId eeseed(pfc.seed());
+      _seed_eta[eeseed.hashedIndex()+61200] = eeseed.ix();
+      _seed_phi[eeseed.hashedIndex()+61200] = eeseed.iy();
+//       _seed_energy[eeseed.hashedIndex()+61200] = pfc.seed().energy();
+      index_number = eeseed.hashedIndex()+61200;
+     }
+    
+//     std::cout << "index_number = " << index_number << std::endl;
+    
+    
+    ///http://cmsdoxygen.web.cern.ch/cmsdoxygen/CMSSW_9_3_0_pre1/doc/html/d2/ddd/PFMultiDepthClusterizer_8cc_source.html#l00098
+    
+    if (iseb){
+      EBDetId ebseed(pfc.seed());
+      auto ecalUnit = readoutTool.readOutUnitOf(ebseed);
+      EBSrFlagCollection::const_iterator srf = ebSrFlags->find(ecalUnit);      
+      if (srf != ebSrFlags->end()) {
+        _seed_flag[ebseed.hashedIndex()] = srf->value();
+      }
+    } else {
+      EEDetId eeseed(pfc.seed());
+      auto ecalUnit = readoutTool.readOutUnitOf(eeseed);
+      EESrFlagCollection::const_iterator srf = eeSrFlags->find(ecalUnit);      
+      if (srf != eeSrFlags->end()) {
+        _seed_flag[eeseed.hashedIndex()+61200] = srf->value();
+      }
+    }
+    
+    
+    
+   //---- get seed energy 
+    
+    double tmpMaxE = -999;
+    
+    const std::vector<reco::PFRecHitFraction> & fraction_v = pfc.recHitFractions();
+    
+    
+    for (std::vector<reco::PFRecHitFraction>::const_iterator it = fraction_v.begin(); it != fraction_v.end(); it++){
+      
+      double rechitE_fraction = it->fraction();
+      if(tmpMaxE < rechitE_fraction){
+        tmpMaxE = rechitE_fraction;
+      }
+      
+      
+      
+      
+//       auto const & h = it->recHitRef();
+//       
+//       if(h.isNull()){
+//         continue;
+//       }
+//       
+// //       std::cout << " isNull ... " << h.isNull() << std::endl;
+//       
+// //       const reco::PFRecHit& rechit = *h;
+// //       
+// //       double rechitE = rechit.energy();
+//       double rechitE = h->energy();
+//       
+//       if(tmpMaxE < rechitE){
+//         tmpMaxE = rechitE;
+//       }
+
+      
+    }
+    
+    _seed_energy[index_number] = tmpMaxE * pfc.energy();
+    
+    
+    
+  }
   
   
   

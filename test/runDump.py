@@ -49,6 +49,7 @@ process.TreeProducerPFrechits = cms.EDAnalyzer('TreeProducerPFrechits',
                             ParticleFlowRecHitECALCollectionTag     = cms.InputTag("particleFlowRecHitECAL:Cleaned"),
                             ebSrFlagLabel     = cms.InputTag("ecalDigis"),
                             eeSrFlagLabel     = cms.InputTag("ecalDigis"),
+                            pfClusterTag = cms.InputTag("particleFlowClusterECAL"),
                            )
 
 

@@ -5,6 +5,8 @@ Run
 
     cmsRun runDump.py  inputFiles=file:/eos/cms/store/group/dpg_ecal/comm_ecal/cmkuo/20180130_NuGun_1000/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_1000_new.root   outputFile=/tmp/amassiro/test.root
 
+    cmsRun runDump.py  inputFiles=file:/eos/cms/store/group/dpg_ecal/comm_ecal/cmkuo/20180130_NuGun_1000/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_1000pre3_new.root   outputFile=/tmp/amassiro/test.pre3.root
+
     
     /eos/cms/store/group/dpg_ecal/comm_ecal/cmkuo/20180130_NuGun_1000/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_1000_new.root
     /eos/cms/store/group/dpg_ecal/comm_ecal/cmkuo/20180130_NuGun_1000/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_1000_org.root
@@ -47,3 +49,46 @@ Plot
 
     
     tree ->Draw("number<61200", "energy>0");
+
+    
+    //---- check sr@pf thresholds -> mainly high eta EE region
+    tree ->Draw("energy", "energy>0 && abs(eta) > 2.5 && number >= 61200", "colz");
+
+    
+    
+    r99t /tmp/amassiro/test.pre3.root  /tmp/amassiro/test.root
+    TTree* tree0 = (TTree*) _file0->Get("TreeProducerPFrechits/tree")
+    TTree* tree1 = (TTree*) _file1->Get("TreeProducerPFrechits/tree")
+
+    tree0 ->Draw("energy >> h0(100,0,40)", "energy>0 && abs(eta) > 2.5 && number >= 61200");
+    tree1 ->Draw("energy >> h1(100,0,40)", "energy>0 && abs(eta) > 2.5 && number >= 61200");
+
+    h0->Scale (1./h0->Integral());
+    h1->Scale (1./h1->Integral());
+    
+    h0->SetLineColor(kRed);
+    
+    h0->Draw();
+    h1->Draw("same");
+    
+    
+    
+    
+    
+    tree0 ->Draw("flag", "energy>0 && abs(eta) > 2.5 && number >= 61200");
+    tree0 ->Draw("flag", "energy>0 && abs(eta) > 2.5");
+    
+    
+    
+    tree0 ->Draw("seed_flag", "seed_energy>0 && seed_number >= 61200");
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
