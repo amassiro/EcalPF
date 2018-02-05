@@ -24,7 +24,7 @@ Run
 
     
     
-    cmsRun runDump.py  inputFiles=file:/eos/cms/store/relval/CMSSW_10_0_0/RelValZEE_13/GEN-SIM-DIGI-RAW-RECO/PU25ns_100X_upgrade2018_realistic_v7_HS-v1/10000/0025CDE5-C900-E811-AB38-0CC47A4C8ED8.root   outputFile=/tmp/amassiro/test.zee.root
+    cmsRun runDump.py  inputFiles=file:/eos/cms/store/relval/CMSSW_10_0_0/RelValZEE_13/GEN-SIM-DIGI-RAW-RECO/PU25ns_100X_upgrade2018_realistic_v7_HS-v1/10000/0025CDE5-C900-E811-AB38-0CC47A4C8ED8.root     outputFile=/tmp/amassiro/test.zee.root
 
     
     
@@ -38,12 +38,10 @@ Plot
  
     tree ->Draw("energy:eta", "energy>0 && energy < 20", "colz");
     
-    tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==0 && number < 61200", "colz");
     tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==1 && number < 61200", "colz");
     tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==3 && number < 61200", "colz");
 
     
-    tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==0 && number >= 61200", "colz");
     tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==1 && number >= 61200", "colz");
     tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==3 && number >= 61200", "colz");
 
@@ -60,8 +58,8 @@ Plot
     TTree* tree0 = (TTree*) _file0->Get("TreeProducerPFrechits/tree")
     TTree* tree1 = (TTree*) _file1->Get("TreeProducerPFrechits/tree")
 
-    tree0 ->Draw("energy >> h0(100,0,40)", "energy>0 && abs(eta) > 2.5 && number >= 61200");
-    tree1 ->Draw("energy >> h1(100,0,40)", "energy>0 && abs(eta) > 2.5 && number >= 61200");
+    tree0 ->Draw("energy >> h0(100,0,40)", "energy>0 && abs(eta) > 2.5 && number >= 61200 && flag==1");
+    tree1 ->Draw("energy >> h1(100,0,40)", "energy>0 && abs(eta) > 2.5 && number >= 61200 && flag==1");
 
     h0->Scale (1./h0->Integral());
     h1->Scale (1./h1->Integral());
@@ -72,7 +70,35 @@ Plot
     h1->Draw("same");
     
     
+    tree0 ->Draw("energy >> h2(100,0,40)", "energy>0 && abs(eta) > 2.5 && number >= 61200 && flag==3");
+    tree1 ->Draw("energy >> h3(100,0,40)", "energy>0 && abs(eta) > 2.5 && number >= 61200 && flag==3");
+
+    h2->Scale (1./h2->Integral());
+    h3->Scale (1./h3->Integral());
     
+    h2->SetLineColor(kRed);
+    
+    h2->Draw();
+    h3->Draw("same");
+ 
+ 
+
+ 
+    tree0 ->Draw("energy >> h0(100,0,40)", "energy>0 && abs(eta) > 1.5 && number >= 61200 && flag==1");
+    tree1 ->Draw("energy >> h1(100,0,40)", "energy>0 && abs(eta) > 1.5 && number >= 61200 && flag==1");
+
+    h0->Scale (1./h0->Integral());
+    h1->Scale (1./h1->Integral());
+    
+    h0->SetLineColor(kRed);
+    
+    h0->Draw();
+    h1->Draw("same");
+    
+
+    
+    
+ 
     
     
     tree0 ->Draw("flag", "energy>0 && abs(eta) > 2.5 && number >= 61200");

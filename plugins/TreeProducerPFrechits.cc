@@ -174,6 +174,9 @@ private:
   int _seed_flag[61200+14648];
   int _seed_number[61200+14648];
   
+  //---- beware: flag values are 1 = ZS and 3 = FR (different from TPG convention -> 1,2,4)
+ 
+  
 //   
 //   vector<reco::PFRecHit>                "particleFlowRecHitECAL"    "Cleaned"         "RECO"    
 //   
