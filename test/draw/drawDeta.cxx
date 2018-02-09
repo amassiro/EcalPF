@@ -17,10 +17,10 @@ void drawDeta(){
   
   //---- 28.6 mm 
 //   float xtal = 0.0286;
-  float xtal = 0.0286 * 1.07; //---- alveola??
+  float xtal = 0.0286 * 1.10; //---- alveola??
   
-  //---- total xtals = 40
-  int xtals = 40;
+  //---- total xtals = 39
+  int xtals = 39;
   
   
   TCanvas* cc = new TCanvas ("cc","",800,600);
@@ -29,8 +29,8 @@ void drawDeta(){
   for (int i=0; i<xtals; i++) {
     
     
-    float y1 = maxy - xtal * (i);
-    float y2 = maxy - xtal * (i+1);
+    float y1 = maxy - xtal * (i-0.5);
+    float y2 = maxy - xtal * (i+0.5);
     float x = maxx;
     
     float theta1 = atan(y1/x);
@@ -41,7 +41,7 @@ void drawDeta(){
     
     float deta = eta2- eta1;
     
-    gr->SetPoint (i, i, deta);
+    gr->SetPoint (i, i+1, deta);
   }
   
   gr->SetMarkerColor(kRed);
@@ -67,8 +67,8 @@ void drawDeta(){
   for (int i=0; i<xtals; i++) {
     
     
-    float y1 = maxy - xtal * (i);
-    float y2 = maxy - xtal * (i+1);
+    float y1 = maxy - xtal * (i-0.5);
+    float y2 = maxy - xtal * (i+0.5);
     float x = maxx;
     
     float theta1 = atan(y1/x);
@@ -107,8 +107,8 @@ void drawDeta(){
   for (int i=0; i<xtals; i++) {
     
     
-    float y1 = maxy - xtal * (i);
-    float y2 = maxy - xtal * (i+1);
+    float y1 = maxy - xtal * (i-0.5);
+    float y2 = maxy - xtal * (i+0.5);
     float x = maxx;
     
     float theta1 = atan(y1/x);
@@ -148,11 +148,11 @@ void drawDeta(){
   TGraph* gr4 = new TGraph();
   for (int i=0; i<xtals; i++) {
     
-    float y1 = maxy - xtal * (i);
-    float y2 = maxy - xtal * (i+1);
+    float y1 = maxy - xtal * (i-0.5);
+    float y2 = maxy - xtal * (i+0.5);
     float x = maxx;
     
-    gr4->SetPoint (i, i, (y1+y2)/2.);
+    gr4->SetPoint (i, i+1, (y1+y2)/2.);
   }
   
   gr4->SetMarkerColor(kRed);
@@ -181,8 +181,8 @@ void drawDeta(){
   for (int i=0; i<xtals; i++) {
     
     
-    float y1 = maxy - xtal * (i);
-    float y2 = maxy - xtal * (i+1);
+    float y1 = maxy - xtal * (i-0.5);
+    float y2 = maxy - xtal * (i+0.5);
     float x = maxx;
     
     float theta1 = atan(y1/x);
@@ -219,8 +219,8 @@ void drawDeta(){
   for (int i=0; i<xtals; i++) {
     
     
-    float y1 = maxy - xtal * (i);
-    float y2 = maxy - xtal * (i+1);
+    float y1 = maxy - xtal * (i-0.5);
+    float y2 = maxy - xtal * (i+0.5);
     float x = maxx;
     
     float theta1 = atan(y1/x);
@@ -229,7 +229,7 @@ void drawDeta(){
     float eta1 = -log(tan( theta1 / 2.) );
     float eta2 = -log(tan( theta2 / 2.) );
     
-    gr6->SetPoint (i, i, (eta1+eta2)/2.);
+    gr6->SetPoint (i, i+1, (eta1+eta2)/2.);
     
   }
   
