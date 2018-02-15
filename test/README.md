@@ -41,6 +41,9 @@ Run
     
     cmsRun runDump.py  inputFiles=file:/afs/cern.ch/work/c/crovelli/public/4DPG/outputRelVal/step3_2__100events.root   outputFile=/tmp/amassiro/test.zee.test.pf.2_100.root
     
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/work/c/crovelli/public/4DPG/outputRelVal/step3_all3.root   outputFile=/tmp/amassiro/test.zee.test.pf.caryThresholds.root
+    /afs/cern.ch/work/c/crovelli/public/4DPG/outputRelVal/step3_all3.root
+    
     
     
 Plot
@@ -184,6 +187,34 @@ Plot
     
     
     
+    r99t /tmp/amassiro/test.pre3.root  /tmp/amassiro/test.root
+    
+    r99t /tmp/amassiro/test.pre3.root  /tmp/amassiro/test.zee.test.pf.2_100.root
+    
+    r99t /tmp/amassiro/test.zee.test.pf.caryThresholds.root
+    
+    
+    TTree* tree0 = (TTree*) _file0->Get("TreeProducerPFrechits/tree")
+    TTree* tree1 = (TTree*) _file1->Get("TreeProducerPFrechits/tree")
+
+    tree0 ->Draw("seed_energy >> h0(100,0,40)", "seed_energy>0 && seed_number >= 61200 && seed_flag==1");
+    tree1 ->Draw("seed_energy >> h1(100,0,40)", "seed_energy>0 && seed_number >= 61200 && seed_flag==1");
+
+    h0->Scale (1./h0->Integral());
+    h1->Scale (1./h1->Integral());
+    
+    h0->SetLineColor(kRed);
+    
+    h0->Draw();
+    h1->Draw("same");
+    
+
+ 
+ 
+    tree0 ->Draw("seed_energy >> h0(100,0,40)", "seed_energy>0 && seed_number >= 61200 && seed_flag==1");
+    tree0 ->Draw("seed_energy >> h0(100,0,40)", "seed_energy>0 && seed_number >= 61200 && seed_flag==3");
+    tree0 ->Draw("seed_energy >> h0(100,0,40)", "seed_energy>0 && seed_number >= 61200");
+
     
     
     r99t /tmp/amassiro/test.zee.test.pf.1.root
