@@ -210,7 +210,8 @@ Plot
     
 
  
- 
+    TTree* tree0 = (TTree*) _file0->Get("TreeProducerPFrechits/tree")
+    
     tree0 ->Draw("seed_energy >> h0(100,0,40)", "seed_energy>0 && seed_number >= 61200 && seed_flag==1");
     tree0 ->Draw("seed_energy >> h0(100,0,40)", "seed_energy>0 && seed_number >= 61200 && seed_flag==3");
     tree0 ->Draw("seed_energy >> h0(100,0,40)", "seed_energy>0 && seed_number >= 61200");
@@ -218,6 +219,14 @@ Plot
     
     
     r99t /tmp/amassiro/test.zee.test.pf.1.root
+    
+    
+    
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/user/a/amassiro/work/ECAL/SRatPF/CMSSW_10_0_2/src/step3.root   outputFile=test.zee.test.pf.mytest.root
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/user/a/amassiro/work/ECAL/SRatPF/CMSSW_10_0_2/src/step3.root   outputFile=test.zee.test.pf.mytest.2.root
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/user/a/amassiro/work/ECAL/SRatPF/CMSSW_10_0_2/src/step3.root   outputFile=test.zee.test.pf.mytest.oldsratpf.root
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/user/a/amassiro/work/ECAL/SRatPF/CMSSW_10_0_2/src/step3.root   outputFile=test.zee.test.pf.mytest.newzsatpf.root
+    
     
     
     
