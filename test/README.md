@@ -30,6 +30,18 @@ Run
     
     
     
+    Zee tests with modified pf-rechit thresholds
+    /afs/cern.ch/work/c/crovelli/public/4DPG/outputRelVal/step3_2.root
+    
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/work/c/crovelli/public/4DPG/outputRelVal/step3_2.root   outputFile=/tmp/amassiro/test.zee.test.pf.root
+
+    
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/work/c/crovelli/public/4DPG/outputRelVal/step3_1.root   outputFile=/tmp/amassiro/test.zee.test.pf.1.root
+    
+    
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/work/c/crovelli/public/4DPG/outputRelVal/step3_2__100events.root   outputFile=/tmp/amassiro/test.zee.test.pf.2_100.root
+    
+    
     
 Plot
 ====
@@ -151,9 +163,30 @@ Plot
     tree0 ->Draw("seed_flag", "seed_flag>-50");
     
     
+    tree0 ->Draw("seed_energy:seed_eta", "seed_energy>0  && seed_number >= 61200 && seed_flag==1");
+    tree0 ->Draw("seed_energy:seed_eta", "seed_energy>0  && seed_number >= 61200");
+    tree0 ->Draw("seed_energy:seed_eta", "seed_energy>0  && seed_number < 61200");
+ 
+    tree0 ->Draw("seed_energy:seed_eta", "seed_energy>0 && seed_energy<0.3  && seed_number < 61200", "colz");
+    
+    tree0 ->Draw("seed_energy:seed_eta", "seed_energy>0 && seed_energy<3  && seed_number >= 61200", "colz");
+    
+    
+    tree0 ->Draw("seed_energy:sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5))", "seed_eta>0 &&  seed_energy>0 && seed_energy<20  && seed_number >= 61200", "colz");
+    tree0 ->Draw("seed_energy:sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5))", "seed_eta>0 &&  seed_energy>0 && seed_energy<50  && seed_number >= 61200", "colz");
+    tree0 ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_eta>0 &&  seed_energy>0 && seed_energy<50  && seed_number >= 61200", "colz");
+    tree0 ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_eta>0 &&  seed_energy>0 && seed_energy<50  && seed_number >= 61200 && seed_flag==1", "colz");
+    tree0 ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_eta>0 &&  seed_energy>0 && seed_energy<50  && seed_number >= 61200 && seed_flag==3", "colz");
+    tree0 ->Draw("(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_eta>0 &&  seed_energy>0 && seed_energy<50  && seed_number >= 61200 ");
     
     
     
+    
+    
+    
+    
+    
+    r99t /tmp/amassiro/test.zee.test.pf.1.root
     
     
     
