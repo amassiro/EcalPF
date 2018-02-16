@@ -228,6 +228,9 @@ Plot
     cmsRun runDump.py  inputFiles=file:/afs/cern.ch/user/a/amassiro/work/ECAL/SRatPF/CMSSW_10_0_2/src/step3.root   outputFile=test.zee.test.pf.mytest.newzsatpf.root
     
     
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/user/a/amassiro/work/ECAL/SRatPF/github/CMSSW_10_0_2/src/step3.root   outputFile=test.zee.test.pf.mytest.newzsatpf..mynewchange.root
+    
+    
     
     
     
