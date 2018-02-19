@@ -29,6 +29,18 @@ Produce:
      --geometry DB:Extended --dump_python --python DigiFull_2018.py   \
      --filein file:step1.root --fileout file:step2.root --nThreads 8
 
+
+     cmsDriver.py step2 --conditions auto:phase1_2018_realistic -n 10 --era \
+     Run2_2018 --eventcontent FEVTDEBUGHLT  \
+     -s DIGI:pdigi_valid,L1,DIGI2RAW,HLT:@relval2018   \
+     --datatier GEN-SIM-DIGI-RAW   \
+     --customise \
+     HLTrigger/Configuration/customizeHLTforCMSSW.customiseForEcalTestPR22254Default   \
+     --geometry DB:Extended --dump_python --python DigiFull_2018.py   \
+     --filein file:step1.root --fileout file:step2.root --nThreads 8
+
+     
+     
      
      cmsDriver.py step2 --conditions auto:phase1_2018_realistic -n 10 --era \
      Run2_2018 --eventcontent FEVTDEBUGHLT  \
