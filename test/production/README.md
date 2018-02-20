@@ -1,7 +1,10 @@
     
+Instructions:
+
+    http://cms-sw.github.io/tutorial.html
     
-    
-git-cms-addpkg  RecoParticleFlow/PFClusterProducer
+    git-cms-addpkg  RecoParticleFlow/PFClusterProducer
+    git cms-addpkg HLTrigger/Configuration
 
 
 Produce:
