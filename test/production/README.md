@@ -6,7 +6,13 @@ Instructions:
     git-cms-addpkg  RecoParticleFlow/PFClusterProducer
     git cms-addpkg HLTrigger/Configuration
 
+    git checkout amassiro-pfrechit-thresholds
 
+
+    git push my-cmssw amassiro-pfrechit-thresholds
+    
+    
+    
 Produce:
 
     
