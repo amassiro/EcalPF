@@ -17,18 +17,20 @@ void prepareThresholds(int level = 0){
   ofstream myfile_EB;
 
   std::string name_EB = "EB_thresholds";
-  if (level == 0) name_EB = name_EB + "_" + std::to_string(0) + ".txt";
-  if (level == 1) name_EB = name_EB + "_" + std::to_string(1) + ".txt";
-  if (level == 2) name_EB = name_EB + "_" + std::to_string(2) + ".txt";
+  if (level == -1) name_EB = name_EB + "_" + std::to_string(-1) + ".txt";
+  if (level == 0)  name_EB = name_EB + "_" + std::to_string(0)  + ".txt";
+  if (level == 1)  name_EB = name_EB + "_" + std::to_string(1)  + ".txt";
+  if (level == 2)  name_EB = name_EB + "_" + std::to_string(2)  + ".txt";
   
   myfile_EB.open (name_EB);
   
   
   float thresholdsEB[85];
   for (int ieta=0; ieta<85; ieta++) {
-    if (level == 0) thresholdsEB[ieta] = 0.100;
-    if (level == 1) thresholdsEB[ieta] = 0.140;
-    if (level == 2) thresholdsEB[ieta] = 0.180;
+    if (level == -1) thresholdsEB[ieta] = 0.080;
+    if (level == 0)  thresholdsEB[ieta] = 0.100;
+    if (level == 1)  thresholdsEB[ieta] = 0.140;
+    if (level == 2)  thresholdsEB[ieta] = 0.180;
   }  
    
   
@@ -104,9 +106,10 @@ void prepareThresholds(int level = 0){
   ofstream myfile_EE;
  
   std::string name_EE = "EE_thresholds";
-  if (level == 0) name_EE = name_EE + "_" + std::to_string(0) + ".txt";
-  if (level == 1) name_EE = name_EE + "_" + std::to_string(1) + ".txt";
-  if (level == 2) name_EE = name_EE + "_" + std::to_string(2) + ".txt";
+  if (level == -1) name_EE = name_EE + "_" + std::to_string(-1) + ".txt";
+  if (level == 0)  name_EE = name_EE + "_" + std::to_string(0)  + ".txt";
+  if (level == 1)  name_EE = name_EE + "_" + std::to_string(1)  + ".txt";
+  if (level == 2)  name_EE = name_EE + "_" + std::to_string(2)  + ".txt";
   
   myfile_EE.open (name_EE);
   
@@ -118,9 +121,10 @@ void prepareThresholds(int level = 0){
   float thresholdsEE[39];
   
   for (int iring=0; iring<39; iring++) {
-    if (level == 0) thresholdsEE[iring] = thresholdsEE_0[iring];
-    if (level == 1) thresholdsEE[iring] = thresholdsEE_1[iring];
-    if (level == 2) thresholdsEE[iring] = thresholdsEE_2[iring];
+    if (level == -1) thresholdsEE[iring] = 0.300;
+    if (level == 0)  thresholdsEE[iring] = thresholdsEE_0[iring];
+    if (level == 1)  thresholdsEE[iring] = thresholdsEE_1[iring];
+    if (level == 2)  thresholdsEE[iring] = thresholdsEE_2[iring];
   }  
   
   
