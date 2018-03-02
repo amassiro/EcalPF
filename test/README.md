@@ -46,6 +46,25 @@ Run
     
     
     
+    
+    
+    Tests DB for PF thresholds
+    
+    /afs/cern.ch/work/c/crovelli/public/4DPG/standard/step3.root
+    /afs/cern.ch/work/c/crovelli/public/4DPG/new/step3.root
+    
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/work/c/crovelli/public/4DPG/standard/step3.root   outputFile=/tmp/amassiro/test.zee.test.pf.standard.root
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/work/c/crovelli/public/4DPG/new/step3.root        outputFile=/tmp/amassiro/test.zee.test.pf.new.root
+
+    
+    /afs/cern.ch/work/c/crovelli/public/4DPG/step3.root
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/work/c/crovelli/public/4DPG/step3.root        outputFile=/tmp/amassiro/test.zee.test.pf.TEST.root
+
+    
+    
+    
+    
+    
 Plot
 ====
 
