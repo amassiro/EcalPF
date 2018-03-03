@@ -60,8 +60,56 @@ Run
     /afs/cern.ch/work/c/crovelli/public/4DPG/step3.root
     cmsRun runDump.py  inputFiles=file:/afs/cern.ch/work/c/crovelli/public/4DPG/step3.root        outputFile=/tmp/amassiro/test.zee.test.pf.TEST.root
 
+    /afs/cern.ch/work/c/crovelli/public/4DPG/secondRound/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_EI_PAT_VALIDATION_DQM_inMINIAODSIM___default.root
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/work/c/crovelli/public/4DPG/secondRound/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_EI_PAT_VALIDATION_DQM_inMINIAODSIM___default.root        outputFile=/tmp/amassiro/test.zee.test.pf.TEST.2.root
     
     
+    /afs/cern.ch/work/c/crovelli/public/4DPG/secondRound/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_EI_PAT_VALIDATION_DQM_inMINIAODSIM___onlyStep3New.root
+    /afs/cern.ch/work/c/crovelli/public/4DPG/secondRound/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_EI_PAT_VALIDATION_DQM_inMINIAODSIM___new.root
+    /afs/cern.ch/work/c/crovelli/public/4DPG/secondRound/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_EI_PAT_VALIDATION_DQM_inMINIAODSIM___default.root
+
+    /afs/cern.ch/work/c/crovelli/public/4DPG/secondRound/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_EI_PAT_VALIDATION_DQM___onlyStep3New.root
+    /afs/cern.ch/work/c/crovelli/public/4DPG/secondRound/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_EI_PAT_VALIDATION_DQM___new.root
+    /afs/cern.ch/work/c/crovelli/public/4DPG/secondRound/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_EI_PAT_VALIDATION_DQM___default.root
+
+    
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/work/c/crovelli/public/4DPG/secondRound/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_EI_PAT_VALIDATION_DQM___onlyStep3New.root        outputFile=test.zee.test.pf.onlyStep3New.root
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/work/c/crovelli/public/4DPG/secondRound/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_EI_PAT_VALIDATION_DQM___new.root        outputFile=test.zee.test.pf.new.root
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/work/c/crovelli/public/4DPG/secondRound/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_EI_PAT_VALIDATION_DQM___default.root        outputFile=test.zee.test.pf.default.root
+    
+    
+    r99t test.zee.test.pf.onlyStep3New.root     test.zee.test.pf.default.root
+    TTree* tree0 = (TTree*) _file0->Get("TreeProducerPFrechits/tree")
+    TTree* tree1 = (TTree*) _file1->Get("TreeProducerPFrechits/tree")
+
+    tree0 ->Draw("seed_energy >> h0(100,0,40)", "seed_energy>0 && seed_number >= 61200");
+    tree1 ->Draw("seed_energy >> h1(100,0,40)", "seed_energy>0 && seed_number >= 61200");
+
+    h0->Scale (1./h0->Integral());
+    h1->Scale (1./h1->Integral());
+    
+    h0->SetLineColor(kRed);
+    h0->SetLineWidth(2);
+    
+    h0->Draw();
+    h1->Draw("same");
+
+    
+    
+    
+    
+    /afs/cern.ch/work/c/crovelli/public/4DPG/standard/step3.root
+    /afs/cern.ch/work/c/crovelli/public/4DPG/new/step3.root
+    
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/work/c/crovelli/public/4DPG/standard/step3.root   outputFile=/tmp/amassiro/test.zee.test.pf.standard.root
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/work/c/crovelli/public/4DPG/new/step3.root        outputFile=/tmp/amassiro/test.zee.test.pf.new.root
+
+    
+    /afs/cern.ch/work/c/crovelli/public/4DPG/step3.root
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/work/c/crovelli/public/4DPG/step3.root        outputFile=/tmp/amassiro/test.zee.test.pf.TEST.root
+
+    
+
     
     
     
