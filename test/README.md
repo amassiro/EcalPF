@@ -95,8 +95,18 @@ Run
     h1->Draw("same");
 
     
-    
-    
+    r99t test.zee.test.pf.onlyStep3New.root     test.zee.test.pf.default.root
+    TTree* tree0 = (TTree*) _file0->Get("TreeProducerPFrechits/tree")
+    TTree* tree1 = (TTree*) _file1->Get("TreeProducerPFrechits/tree")
+
+    tree0 ->Draw("seed_energy:seed_eta", "seed_energy>0  && seed_number >= 61200 && seed_flag==1");
+    tree0 ->Draw("seed_energy:seed_eta", "seed_energy>0  && seed_energy<10 && seed_number >= 61200");
+    tree0 ->Draw("seed_energy:seed_eta", "seed_energy>0  && seed_number < 61200");
+
+    tree0 ->Draw("(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_eta>0 &&  seed_energy>0 && seed_energy<50  && seed_number >= 61200 ");
+    tree0 ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_eta>0 &&  seed_energy>0 && seed_energy<20  && seed_number >= 61200", "colz");
+    tree0 ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_eta>0 &&  seed_energy>0 && seed_energy<2  && seed_number >= 61200", "colz");
+
     
     /afs/cern.ch/work/c/crovelli/public/4DPG/standard/step3.root
     /afs/cern.ch/work/c/crovelli/public/4DPG/new/step3.root
