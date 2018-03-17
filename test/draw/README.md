@@ -14,3 +14,8 @@ Prepare thresholds transofrming iring into ix/iy and ieta/iphi maps
     r00t -q prepareThresholds.cxx\(5\)
 
 
+Create map eta-ring
+====
+
+    r00t -q prepareMap.cxx
+ 
