@@ -26,6 +26,14 @@ Produce:
      file:step1.root --nThreads 8
 
      
+     cmsDriver.py ZEE_13TeV_TuneCUETP8M1_cfi --conditions    \
+     auto:phase1_2017_realistic -n 10 --era Run2_2017 --eventcontent \
+     FEVTDEBUG -s GEN,SIM --datatier GEN-SIM --beamspot \
+     Realistic25ns13TeVEarly2017Collision --geometry DB:Extended  \
+     --python ZEE_13TeV_TuneCUETP8M1_2017_GenSimFull.py --fileout \
+     file:step1.root --nThreads 8
+     
+     
      
      ### step2: DIGI step con customize function di HLT
     
@@ -59,6 +67,15 @@ Produce:
      --filein file:step1.root --fileout file:step2.root --nThreads 8
 
      
+     cmsDriver.py step2 --conditions auto:phase1_2017_realistic -n 10 --era \
+     Run2_2017 --eventcontent FEVTDEBUGHLT  \
+     -s DIGI:pdigi_valid,L1,DIGI2RAW,HLT:@relval2017   \
+     --datatier GEN-SIM-DIGI-RAW   \
+     --customise \
+     HLTrigger/Configuration/customizeHLTforCMSSW.customiseForEcalTest   \
+     --geometry DB:Extended --dump_python --python DigiFull_2017.py   \
+     --filein file:step1.root --fileout file:step2.root --nThreads 8
+
      
      ### step3: RECO step
     
@@ -71,5 +88,14 @@ Produce:
      --dump_python --python RecoFull_2018.py --filein file:step2.root  \
      --fileout file:step3.root --nThreads 8
     
+    
+    cmsDriver.py step3 --conditions auto:phase1_2017_realistic   \
+     -n 10 --era Run2_2017 --eventcontent RECOSIM,MINIAODSIM,DQM   \
+     --runUnscheduled  \
+     -s    \
+     RAW2DIGI,L1Reco,RECO,RECOSIM,EI,PAT,VALIDATION:@standardValidation+@miniAODValidation,DQM:@standardDQM+@ExtraHLT+@miniAODDQM \
+     --datatier GEN-SIM-RECO,MINIAODSIM,DQMIO --geometry DB:Extended \
+     --dump_python --python RecoFull_2017.py --filein file:step2.root  \
+     --fileout file:step3.root --nThreads 8
     
     

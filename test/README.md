@@ -120,6 +120,10 @@ Run
 
     
 
+    /afs/cern.ch/work/a/amassiro/ECAL/CMSSW_9_4_2/src/ECALValidation/EcalPF/test/production/step3.root
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/work/a/amassiro/ECAL/CMSSW_9_4_2/src/ECALValidation/EcalPF/test/production/step3.root        outputFile=/tmp/amassiro/test.zee.test.pf.TEST.root
+    
+    
     
     
     
