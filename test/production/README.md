@@ -76,6 +76,9 @@ Produce:
      --geometry DB:Extended --dump_python --python DigiFull_2017.py   \
      --filein file:step1.root --fileout file:step2.root --nThreads 8
 
+
+     
+     
      
      ### step3: RECO step
     
@@ -97,5 +100,36 @@ Produce:
      --datatier GEN-SIM-RECO,MINIAODSIM,DQMIO --geometry DB:Extended \
      --dump_python --python RecoFull_2017.py --filein file:step2.root  \
      --fileout file:step3.root --nThreads 8
+    
+
+
+Arbitrary customization:
+    
+    cmsDriver.py step3 --conditions auto:phase1_2017_realistic   \
+     -n 10 --era Run2_2017 --eventcontent RECOSIM,MINIAODSIM,DQM   \
+     --runUnscheduled  \
+     -s    \
+     RAW2DIGI,L1Reco,RECO,RECOSIM,EI,PAT,VALIDATION:@standardValidation+@miniAODValidation,DQM:@standardDQM+@ExtraHLT+@miniAODDQM \
+     --customise RecoParticleFlow/Configuration/customizePF.ecalNoSRPFCut1sigma \
+     --datatier GEN-SIM-RECO,MINIAODSIM,DQMIO --geometry DB:Extended \
+     --dump_python --python RecoFull_2017.py --filein file:step2.root  \
+     --fileout file:step3.root --nThreads 8
+
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    
+    
+    
     
     
