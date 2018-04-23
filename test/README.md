@@ -125,6 +125,30 @@ Run
     
     
     
+
+    
+    
+    
+2018 data
+====
+ 
+    /eos/cms/store/data/Commissioning2018/ZeroBias/MINIAOD/PromptReco-v1/000/314/664/00000/621A761E-8C46-E811-BEF0-FA163E5CC803.root
+    
+    cmsRun runDump.py  inputFiles=file:/eos/cms/store/data/Commissioning2018/ZeroBias/MINIAOD/PromptReco-v1/000/314/664/00000/621A761E-8C46-E811-BEF0-FA163E5CC803.root        outputFile=/tmp/amassiro/test.data.2018.root
+
+     
+    
+    /eos/cms/store/data/Commissioning2018/ZeroBias/AOD/PromptReco-v1/000/314/665/00000/C8CCC941-8E46-E811-B4A6-FA163EC01425.root
+    
+    cmsRun runDump.py  inputFiles=file:/eos/cms/store/data/Commissioning2018/ZeroBias/AOD/PromptReco-v1/000/314/665/00000/C8CCC941-8E46-E811-B4A6-FA163EC01425.root        outputFile=/tmp/amassiro/test.data.2018.root
+
+    
+    /eos/cms/store/data/Commissioning2018/ZeroBias/RAW/v1/000/314/665/00000/84631C0C-A943-E811-890F-FA163E171A40.root
+    
+    cmsRun RecoFull_2018.py 
+    cmsRun runDump.py  inputFiles=file:/tmp/amassiro/step3.root        outputFile=/tmp/amassiro/test.data.2018.root
+
+    
     
     
 Plot
