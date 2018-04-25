@@ -146,6 +146,7 @@ Run
     /eos/cms/store/data/Commissioning2018/ZeroBias/RAW/v1/000/314/665/00000/84631C0C-A943-E811-890F-FA163E171A40.root
     
     cmsRun RecoFull_2018.py 
+    cmsRun RecoFull_2018_TEST.py 
     cmsRun runDump.py  inputFiles=file:/tmp/amassiro/step3.root        outputFile=/tmp/amassiro/test.data.2018.root
 
     

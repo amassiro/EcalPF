@@ -113,10 +113,21 @@ Produce:
      --dump_python --python RecoFull_2018.py --filein file:step2.root  \
      --fileout file:step3.root --nThreads 8  --data
 
+     cmsDriver.py step3 --conditions auto:phase1_2018_realistic   \
+     -n 10 --era Run2_2018 --eventcontent RECOSIM,MINIAODSIM,DQM   \
+     --runUnscheduled  \
+     -s    \
+     RAW2DIGI,L1Reco,RECO,RECOSIM,EI,PAT:@standardValidation+@miniAODValidation,DQM:@standardDQM+@ExtraHLT+@miniAODDQM \
+     --datatier RECO,MINIAODSIM,DQMIO --geometry DB:Extended \
+     --dump_python --python RecoFull_2018_TEST.py --filein file:step2.root  \
+     --fileout file:step3.root --nThreads 8  --data
+
+     
     
-    100X_dataRun2_Prompt_v2
+    100X_dataRun2_Prompt_v3
     
     cmsRun RecoFull_2018.py 
+    cmsRun RecoFull_2018_TEST.py 
     
     
 
