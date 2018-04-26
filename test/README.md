@@ -147,8 +147,19 @@ Run
     
     cmsRun RecoFull_2018.py 
     cmsRun RecoFull_2018_TEST.py 
+    
     cmsRun runDump.py  inputFiles=file:/tmp/amassiro/step3.root        outputFile=/tmp/amassiro/test.data.2018.root
 
+    
+    /eos/cms/store/data/Commissioning2018/HLTPhysics2/MINIAOD/PromptReco-v1/000/314/863/00000/4E534A8F-1549-E811-BF4C-FA163E2ABCEA.root
+    cmsRun runDump.py  inputFiles=file:/tmp/amassiro/4E534A8F-1549-E811-BF4C-FA163E2ABCEA.root        outputFile=/tmp/amassiro/test.data.2018.root
+    
+    /eos/cms/store/data/Commissioning2018/HLTPhysics2/RAW-RECO/LogError-PromptReco-v1/000/314/860/00000/E2C3DF38-E148-E811-AE26-02163E0176EC.root
+    cmsRun runDump.py  inputFiles=file:/tmp/amassiro/E2C3DF38-E148-E811-AE26-02163E0176EC.root         outputFile=/tmp/amassiro/test.data.2018.root
+    
+    TTree* tree0 = (TTree*) _file0->Get("TreeProducerPFrechits/tree")
+    tree0 ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_eta>0 &&  seed_energy>0 && seed_energy<50  && seed_number >= 61200", "colz");
+    
     
     
     
@@ -289,6 +300,7 @@ Plot
     tree0 ->Draw("(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_eta>0 &&  seed_energy>0 && seed_energy<50  && seed_number >= 61200 ");
     
     
+    tree0 ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_eta>0 &&  seed_energy>0 && seed_energy<50  && seed_number >= 61200", "colz");
     
     
     
