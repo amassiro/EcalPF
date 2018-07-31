@@ -8,6 +8,7 @@ Where:
 
     /afs/cern.ch/work/a/amassiro/ECAL/SRatPF/CMSSW_10_0_0/src/ECALValidation/EcalPF
     /afs/cern.ch/user/a/amassiro/work/ECAL/CMSSW_10_1_1/src/ECALValidation/EcalPF
+    /afs/cern.ch/user/a/amassiro/work/ECAL/CMSSW_10_2_0/src/ECALValidation/EcalPF
     
 To install:
 
