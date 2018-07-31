@@ -93,6 +93,14 @@ Produce:
      --datatier GEN-SIM-DIGI-RAW   \
      --geometry DB:Extended --dump_python --python DigiFull_2018.py   \
      --filein file:step1.root --fileout file:step2.root --nThreads 8
+
+     cmsDriver.py step2 --conditions 101X_upgrade2018_realistic_forJetMetHLT -n 10 --era \
+     Run2_2018 --eventcontent FEVTDEBUGHLT  \
+     -s DIGI:pdigi_valid,L1,DIGI2RAW,HLT:@relval2018   \
+     --datatier GEN-SIM-DIGI-RAW   \
+     --geometry DB:Extended --python DigiFull_2018.py   \
+     --filein file:step1.root --fileout file:step2.root --nThreads 8
+
      
      cmsRun DigiFull_2018.py
      
@@ -149,6 +157,16 @@ Produce:
      RAW2DIGI,L1Reco,RECO,RECOSIM,EI,PAT:@standardValidation+@miniAODValidation,DQM:@standardDQM+@ExtraHLT+@miniAODDQM \
      --datatier RECO,MINIAODSIM,DQMIO --geometry DB:Extended \
      --dump_python --python RecoFull_2018_TEST.py --filein file:step2.root  \
+     --fileout file:step3.root --nThreads 8  --data
+
+     
+    cmsDriver.py step3 --conditions 101X_upgrade2018_realistic_forJetMetHLT   \
+     -n 10 --era Run2_2018 --eventcontent RECOSIM,MINIAODSIM,DQM   \
+     --runUnscheduled  \
+     -s    \
+     RAW2DIGI,L1Reco,RECO,RECOSIM,EI,PAT:@standardValidation+@miniAODValidation,DQM:@standardDQM+@ExtraHLT+@miniAODDQM \
+     --datatier RECO,MINIAODSIM,DQMIO --geometry DB:Extended \
+     --python RecoFull_2018_TEST.py --filein file:step2.root  \
      --fileout file:step3.root --nThreads 8  --data
 
     

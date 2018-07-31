@@ -124,8 +124,14 @@ Run
     cmsRun runDump.py  inputFiles=file:/afs/cern.ch/work/a/amassiro/ECAL/CMSSW_9_4_2/src/ECALValidation/EcalPF/test/production/step3.root        outputFile=/tmp/amassiro/test.zee.test.pf.TEST.root
     
     
+    /afs/cern.ch/user/a/amassiro/work/ECAL/CMSSW_10_2_0/src/ECALValidation/EcalPF/test/production/step3.root
+    cmsRun runDump.py  inputFiles=file:/afs/cern.ch/user/a/amassiro/work/ECAL/CMSSW_10_2_0/src/ECALValidation/EcalPF/test/production/step3.root      outputFile=/tmp/amassiro/test.zee.test.pf.root
     
-
+    r99t /tmp/amassiro/test.zee.test.pf.root
+    TTree* tree = (TTree*) _file0->Get("TreeProducerPFrechits/tree")
+    tree ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_eta>0 &&  seed_energy>0 && seed_energy<50  && seed_number >= 61200", "colz");
+    
+    
     
     
     
