@@ -167,6 +167,25 @@ Run
     tree0 ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_eta>0 &&  seed_energy>0 && seed_energy<50  && seed_number >= 61200", "colz");
     
     
+
+    
+2018 MC
+====
+    
+    /DYToEE_M-50_NNPDF31_TuneCP5_13TeV-powheg-pythia8/RunIIFall18MiniAOD-102X_upgrade2018_realistic_v12-v1/MINIAODSIM
+    /store/mc/RunIIFall18MiniAOD/DYToEE_M-50_NNPDF31_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/102X_upgrade2018_realistic_v12-v1/100000/FD22CB36-F128-2F4F-99BB-FDE3C9C50A46.root  
+    cmsRun runDumpMC.py  inputFiles=file:/store/mc/RunIIFall18MiniAOD/DYToEE_M-50_NNPDF31_TuneCP5_13TeV-powheg-pythia8/MINIAODSIM/102X_upgrade2018_realistic_v12-v1/100000/FD22CB36-F128-2F4F-99BB-FDE3C9C50A46.root         outputFile=/tmp/amassiro/test.mc.2018.root
+    
+    cmsRun runDumpMC.py  inputFiles=file:/eos/cms/store/mc/RunIIFall18MiniAOD/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/MINIAODSIM/102X_upgrade2018_realistic_v12_ext1-v1/60000/09EC3099-3F8B-4D47-AD48-95BE9A29EB14.root     outputFile=/tmp/amassiro/test.mc.2018.root
+    
+    
+    /DYToEE_M-50_NNPDF31_TuneCP5_13TeV-powheg-pythia8/RunIIFall18DRPremix-102X_upgrade2018_realistic_v11-v1/AODSIM
+    /store/mc/RunIIFall18DRPremix/DYToEE_M-50_NNPDF31_TuneCP5_13TeV-powheg-pythia8/AODSIM/102X_upgrade2018_realistic_v11-v1/1210000/8176DA36-70D2-EB4B-AAC4-C7F81845F0B7.root 
+    
+    edmDumpEventContent  root://xrootd-cms.infn.it//store/mc/RunIIFall18DRPremix/DYToEE_M-50_NNPDF31_TuneCP5_13TeV-powheg-pythia8/AODSIM/102X_upgrade2018_realistic_v11-v1/1210000/8176DA36-70D2-EB4B-AAC4-C7F81845F0B7.root >dump.aod.txt
+
+    cmsRun runDumpMC.py  inputFiles=/store/mc/RunIIFall18DRPremix/DYToEE_M-50_NNPDF31_TuneCP5_13TeV-powheg-pythia8/AODSIM/102X_upgrade2018_realistic_v11-v1/1210000/8176DA36-70D2-EB4B-AAC4-C7F81845F0B7.root     outputFile=/tmp/amassiro/test.mc.2018.root
+    
     
     
 Plot
