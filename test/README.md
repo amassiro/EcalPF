@@ -187,6 +187,10 @@ Run
     cmsRun runDumpMC.py  inputFiles=/store/mc/RunIIFall18DRPremix/DYToEE_M-50_NNPDF31_TuneCP5_13TeV-powheg-pythia8/AODSIM/102X_upgrade2018_realistic_v11-v1/1210000/8176DA36-70D2-EB4B-AAC4-C7F81845F0B7.root     outputFile=/tmp/amassiro/test.mc.2018.root
     
     
+    cmsRun runDumpMC.py  inputFiles=/store/relval/CMSSW_10_3_0_pre4/RelValPREMIXUP18_PU25/GEN-SIM-DIGI-RAW/PU25ns_103X_upgrade2018_realistic_v4-v1/20001/B5A4DF1F-E590-C044-B431-9637FE457FA7.root     outputFile=/tmp/amassiro/test.mc.2018.root
+    
+    edmDumpEventContent /eos/cms/store/relval/CMSSW_10_3_0_pre4/RelValPREMIXUP18_PU25/GEN-SIM-DIGI-RAW/PU25ns_103X_upgrade2018_realistic_v4-v1/20001/B5A4DF1F-E590-C044-B431-9637FE457FA7.root > dump.premix.txt
+
     
 Plot
 ====
