@@ -192,6 +192,13 @@ Run
     edmDumpEventContent /eos/cms/store/relval/CMSSW_10_3_0_pre4/RelValPREMIXUP18_PU25/GEN-SIM-DIGI-RAW/PU25ns_103X_upgrade2018_realistic_v4-v1/20001/B5A4DF1F-E590-C044-B431-9637FE457FA7.root > dump.premix.txt
 
     
+    /RelValPREMIXUP18_PU25/CMSSW_10_3_0_pre5-PU25ns_103X_upgrade2018_realistic_v7-v1/PREMIX
+    edmDumpEventContent  root://cmsxrootd.fnal.gov,//store/relval/CMSSW_10_3_0_pre5/RelValPREMIXUP18_PU25/PREMIX/PU25ns_103X_upgrade2018_realistic_v7-v1/10001/1E36E92D-B45A-5143-8B8D-DF1851BF99A1.root     
+    edmDumpEventContent  root://cms-xrd-global.cern.ch//store/relval/CMSSW_10_3_0_pre5/RelValPREMIXUP18_PU25/PREMIX/PU25ns_103X_upgrade2018_realistic_v7-v1/10001/1E36E92D-B45A-5143-8B8D-DF1851BF99A1.root 
+
+    
+    
+    
 Plot
 ====
 
