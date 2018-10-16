@@ -198,6 +198,19 @@ Run
 
     
     
+    https://dmytro.web.cern.ch/dmytro/cmsprodmon/workflows.php?prep_id=CMSSW_10_2_5__fullsim_noPU_2018_Can30fb-1539288093-QCD_FlatPt_15_3000HS_13
+    /RelValQCD_FlatPt_15_3000HS_13/CMSSW_10_2_5-102X_upgrade2018_realistic_v12_Can30fb_v1-v1/GEN-SIM-DIGI-RAW
+    cmsRun RecoFull_2018_TEST.py 
+    /store/relval/CMSSW_10_2_5/RelValQCD_FlatPt_15_3000HS_13/GEN-SIM-DIGI-RAW/102X_upgrade2018_realistic_v12_Can30fb_v1-v1/10000/10989D9A-3927-CE45-90D1-9D7F5E13F404.root outputFile=/tmp/amassiro/test.mc.2018.root
+    
+    cmsRun runDumpMC.py  inputFiles=production/step3.root     outputFile=/tmp/amassiro/test.mc.2018.root
+
+    
+    
+    
+    
+    
+    
     
 Plot
 ====

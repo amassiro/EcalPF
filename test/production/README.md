@@ -183,6 +183,28 @@ Produce:
     cmsRun RecoFull_2018_TEST.py 
     
     
+    
+    
+
+    MC
+    
+    cmsDriver.py step3 --conditions 102X_upgrade2018_realistic_v12   \
+     -n 10 --era Run2_2018 --eventcontent RECOSIM,MINIAODSIM,DQM   \
+     --runUnscheduled  \
+     -s    \
+     RAW2DIGI,L1Reco,RECO,RECOSIM,EI,PAT:@standardValidation+@miniAODValidation,DQM:@standardDQM+@ExtraHLT+@miniAODDQM \
+     --datatier RECO,MINIAODSIM --geometry DB:Extended \
+     --python RecoFull_2018_MC_TEST.py \
+     --filein file:step2.root  \
+     --fileout file:step3.root --nThreads 8  --mc
+
+     
+    cmsRun RecoFull_2018_TEST.py 
+     
+
+     
+     
+     
 
 Arbitrary customization:
     
