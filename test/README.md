@@ -231,11 +231,19 @@ Run
     tree ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_energy>0 && seed_energy < 20                 && seed_number >= 61200", "colz");
     tree ->Draw("seed_energy:abs(seed_eta)", "seed_energy>0 && seed_energy < 20                 && seed_number <  61200", "colz");
     
-    tree ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_energy>0 && seed_energy < 20    && flag==0              && seed_number >= 61200", "colz");
-    tree ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_energy>0 && seed_energy < 20    && flag==1              && seed_number >= 61200", "colz");
+    tree ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_energy>0 && seed_energy < 40    && seed_flag==0              && seed_number >= 61200", "colz");
+    tree ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_energy>0 && seed_energy < 40    && seed_flag==1              && seed_number >= 61200", "colz");
     
     
+    tree ->Draw("seed_flag:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_energy>0 && seed_energy < 100            && seed_number >= 61200", "colz");
     
+    tree ->Draw("seed_flag:abs(seed_eta)", "seed_energy>0 && seed_energy < 100            && seed_number < 61200", "colz");
+    
+    
+    pfClusterTag = cms.InputTag("particleFlowClusterECAL")
+    tree ->Draw("energy:abs(eta)", "energy>0 && energy < 40                   && number >= 61200", "colz");
+    tree ->Draw("flag:abs(eta)",   "energy>0 && energy < 40                   && number >= 61200", "colz");
+
     
     
 Plot
