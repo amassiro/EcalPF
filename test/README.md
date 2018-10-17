@@ -203,10 +203,36 @@ Run
     cmsRun RecoFull_2018_TEST.py 
     /store/relval/CMSSW_10_2_5/RelValQCD_FlatPt_15_3000HS_13/GEN-SIM-DIGI-RAW/102X_upgrade2018_realistic_v12_Can30fb_v1-v1/10000/10989D9A-3927-CE45-90D1-9D7F5E13F404.root outputFile=/tmp/amassiro/test.mc.2018.root
     
-    cmsRun runDumpMC.py  inputFiles=production/step3.root     outputFile=/tmp/amassiro/test.mc.2018.root
+    cmsRun runDumpMC.py  inputFiles=file:production/step3.root     outputFile=/tmp/amassiro/test.mc.2018.root
+
+    /RelValQCD_FlatPt_15_3000HS_13/CMSSW_10_2_5-102X_upgrade2018_realistic_v12_Can30fb_v1-v1/GEN-SIM-RECO
+    cmsRun runDumpMC.py  inputFiles=/store/relval/CMSSW_10_2_5/RelValQCD_FlatPt_15_3000HS_13/GEN-SIM-RECO/102X_upgrade2018_realistic_v12_Can30fb_v1-v1/10000/9163AB5D-8C85-B747-B534-9E72AE581405.root      outputFile=/tmp/amassiro/test.mc.2018.reco.root
+    
+    
+    r99t /tmp/amassiro/test.mc.2018.reco.root
+    TTree* tree = (TTree*) _file0->Get("TreeProducerPFrechits/tree")
+    
+    tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==1 && number >= 61200", "colz");
+    tree ->Draw("energy:eta", "energy>0 && energy < 20 && flag==3 && number >= 61200", "colz");
 
     
+    tree ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_energy>0 && seed_energy < 20 && seed_flag==0 && seed_number >= 61200 && (52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))>1.5 && (52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))<3.0", "colz");
+    tree ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_energy>0 && seed_energy < 20 && seed_flag==1 && seed_number >= 61200 && (52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))>1.5 && (52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))<3.0", "colz");
+    tree ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_energy>0 && seed_energy < 20 && seed_flag==3 && seed_number >= 61200 && (52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))>1.5 && (52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))<3.0", "colz");
     
+    tree ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_energy>0 && seed_energy < 20                 && seed_number >= 61200 && (52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))>1.5 && (52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))<3.0", "colz");
+    tree ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_energy>0 && seed_energy < 20                                         && (52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))>1.5 && (52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))<3.0", "colz");
+    
+    tree ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_energy>0 && seed_energy < 20                                         && (52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))>1.5 && (52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))<3.0", "colz");
+
+    tree ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_energy>0 && seed_energy < 20                                                                                  ", "colz");
+
+    
+    tree ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_energy>0 && seed_energy < 20                 && seed_number >= 61200", "colz");
+    tree ->Draw("seed_energy:abs(seed_eta)", "seed_energy>0 && seed_energy < 20                 && seed_number <  61200", "colz");
+    
+    tree ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_energy>0 && seed_energy < 20    && flag==0              && seed_number >= 61200", "colz");
+    tree ->Draw("seed_energy:(52-sqrt((seed_eta-50.5)*(seed_eta-50.5)+(seed_phi-50.5)*(seed_phi-50.5)))", "seed_energy>0 && seed_energy < 20    && flag==1              && seed_number >= 61200", "colz");
     
     
     
