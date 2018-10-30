@@ -244,6 +244,45 @@ Run
     tree ->Draw("energy:abs(eta)", "energy>0 && energy < 40                   && number >= 61200", "colz");
     tree ->Draw("flag:abs(eta)",   "energy>0 && energy < 40                   && number >= 61200", "colz");
 
+
+    
+2018 MC: test photostatistics
+====
+
+    /eos/cms/store/group/dpg_ecal/comm_ecal/cmkuo/NuGun
+
+    /eos/cms/store/group/dpg_ecal/comm_ecal/cmkuo/NuGun/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_EI_PAT_VALIDATION_DQM_NoPhoStat_1.root
+    /eos/cms/store/group/dpg_ecal/comm_ecal/cmkuo/NuGun/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_EI_PAT_VALIDATION_DQM_PhoStat_1.root
+    /eos/cms/store/group/dpg_ecal/comm_ecal/cmkuo/NuGun/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_EI_PAT_VALIDATION_DQM_NoPhoStat_2.root
+    /eos/cms/store/group/dpg_ecal/comm_ecal/cmkuo/NuGun/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_EI_PAT_VALIDATION_DQM_PhoStat_2.root
+
+
+    cmsRun runDumpMC.py  inputFiles=file:/eos/cms/store/group/dpg_ecal/comm_ecal/cmkuo/NuGun/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_EI_PAT_VALIDATION_DQM_NoPhoStat_1.root    outputFile=NoPhoStat_1.root   maxEvents=1000
+    cmsRun runDumpMC.py  inputFiles=file:/eos/cms/store/group/dpg_ecal/comm_ecal/cmkuo/NuGun/step3_RAW2DIGI_L1Reco_RECO_RECOSIM_EI_PAT_VALIDATION_DQM_PhoStat_1.root      outputFile=PhoStat_1.root     maxEvents=1000
+
+    
+    TTree* tree = (TTree*) _file0->Get("TreeProducerPFrechits/tree")
+    tree ->Draw("seed_energy", "seed_energy>0 && seed_energy<50", "colz");
+
+    
+    r99t NoPhoStat_1_numEvent1000.root PhoStat_1_numEvent1000.root  
+    
+    TTree* tree0 = (TTree*) _file0->Get("TreeProducerPFrechits/tree")
+    TTree* tree1 = (TTree*) _file1->Get("TreeProducerPFrechits/tree")
+
+    tree0 ->Draw("seed_energy >> h0(400,0,40)", "seed_energy>0");
+    tree1 ->Draw("seed_energy >> h1(400,0,40)", "seed_energy>0");
+
+    h0->Scale (1./h0->Integral());
+    h1->Scale (1./h1->Integral());
+    
+    h0->SetLineColor(kRed);
+    
+    h0->Draw();
+    h1->Draw("same");
+      
+    
+    
     
     
 Plot
