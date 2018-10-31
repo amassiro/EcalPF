@@ -289,6 +289,17 @@ Run
     r00t  PhoStat_1_numEvent1000.root NoPhoStat_1_numEvent1000.root    draw/drawComparison.cxx\(\"Sum$\(seed_energy\>0\)\",100,0,1000,\"seed_number\<61200\"\)
     r00t  PhoStat_1_numEvent1000.root NoPhoStat_1_numEvent1000.root    draw/drawComparison.cxx\(\"Sum$\(seed_energy\>0\)\",100,0,1000,\"seed_number\>\=61200\"\)
     
+    r00t  PhoStat_1_numEvent1000.root NoPhoStat_1_numEvent1000.root    draw/drawComparison.cxx\(\"Sum$\(seed_energy\>0\&\&seed_number\<61200\)\",100,0,1000,\"1\"\)
+    r00t  PhoStat_1_numEvent1000.root NoPhoStat_1_numEvent1000.root    draw/drawComparison.cxx\(\"Sum$\(seed_energy\>0\&\&seed_number\>\=61200\)\",100,0,1000,\"1\"\)
+    r00t  PhoStat_1_numEvent1000.root NoPhoStat_1_numEvent1000.root    draw/drawComparison.cxx\(\"Sum$\(seed_energy\>0\&\&seed_number\>\=61200\)\",50,0,250,\"1\"\)
+    
+    
+    
+    r00t  PhoStat_1_numEvent1000.root NoPhoStat_1_numEvent1000.root    draw/drawComparison.cxx\(\"seed_eta\",170,-85,85,\"seed_energy\>0\&\&seed_number\<61200\"\)
+    r00t  PhoStat_1_numEvent1000.root NoPhoStat_1_numEvent1000.root    draw/drawComparison.cxx\(\"\(52-sqrt\(\(seed_eta-50.5\)\*\(seed_eta-50.5\)\+\(seed_phi-50.5\)\*\(seed_phi-50.5\)\)\)\",42,0,42,\"seed_energy\>0\&\&seed_number\>\=61200\"\)
+    
+    
+    
     
     
 Plot
