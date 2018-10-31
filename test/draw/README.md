@@ -18,4 +18,16 @@ Create map eta-ring
 ====
 
     r00t -q prepareMap.cxx
- 
+
+    
+    
+    
+Draw comparison between two root files
+====
+
+    r00t drawComparison.cxx
+    r00t  PhoStat_1_numEvent1000.root NoPhoStat_1_numEvent1000.root    draw/drawComparison.cxx\(\"seed_energy\",150,0,300\)
+    
+    
+    
+    

@@ -282,6 +282,12 @@ Run
     h1->Draw("same");
       
     
+    r00t  PhoStat_1_numEvent1000.root NoPhoStat_1_numEvent1000.root    draw/drawComparison.cxx\(\"seed_energy\",50,0,50\)
+    r00t  PhoStat_1_numEvent1000.root NoPhoStat_1_numEvent1000.root    draw/drawComparison.cxx\(\"seed_energy\",50,0,50,\"seed_number\>\=61200\"\)
+    r00t  PhoStat_1_numEvent1000.root NoPhoStat_1_numEvent1000.root    draw/drawComparison.cxx\(\"seed_energy\",20,0,20,\"seed_number\<61200\"\)
+        
+    r00t  PhoStat_1_numEvent1000.root NoPhoStat_1_numEvent1000.root    draw/drawComparison.cxx\(\"Sum$\(seed_energy\>0\)\",100,0,1000,\"seed_number\<61200\"\)
+    r00t  PhoStat_1_numEvent1000.root NoPhoStat_1_numEvent1000.root    draw/drawComparison.cxx\(\"Sum$\(seed_energy\>0\)\",100,0,1000,\"seed_number\>\=61200\"\)
     
     
     
