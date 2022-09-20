@@ -1,8 +1,8 @@
-void Canvas_1()
+void Canvas_phi()
 {
 //=========Macro generated from canvas: Canvas_1/Canvas_1
 //=========  (Tue Sep 20 16:01:16 2022) by ROOT version 6.17/01
-   TCanvas *Canvas_1 = new TCanvas("Canvas_1", "Canvas_1",766,109,990,843);
+   TCanvas *Canvas_1 = new TCanvas("Canvas_1", "Canvas_1",800,800);
    Canvas_1->Range(-12,-12,113,113);
    Canvas_1->SetFillColor(0);
    Canvas_1->SetBorderMode(0);
@@ -7366,31 +7366,31 @@ void Canvas_1()
    palette->SetTitleOffset(1.2);
    palette->SetTitleSize(0.06);
 
-   Int_t ci;      // for color index setting
-   TColor *color; // for color definition with alpha
-   ci = TColor::GetColor("#f9f90e");
-   palette->SetFillColor(ci);
-   palette->SetFillStyle(1001);
-   phi_ixiy->GetListOfFunctions()->Add(palette,"br");
-   
-   TPaveStats *ptstats = new TPaveStats(0.78,0.695,0.98,0.935,"brNDC");
-   ptstats->SetName("stats");
-   ptstats->SetBorderSize(1);
-   ptstats->SetFillColor(0);
-   ptstats->SetTextAlign(12);
-   ptstats->SetTextFont(42);
-   TText *ptstats_LaTex = ptstats->AddText("phi_ixiy");
-   ptstats_LaTex->SetTextSize(0.0368);
-   ptstats_LaTex = ptstats->AddText("Entries = 10000  ");
-   ptstats_LaTex = ptstats->AddText("Mean x =  71.78");
-   ptstats_LaTex = ptstats->AddText("Mean y = 1.625e+07");
-   ptstats_LaTex = ptstats->AddText("Std Dev x =   7.03");
-   ptstats_LaTex = ptstats->AddText("Std Dev y = 1.625e+07");
-   ptstats->SetOptStat(1111);
-   ptstats->SetOptFit(0);
-   ptstats->Draw();
-   phi_ixiy->GetListOfFunctions()->Add(ptstats);
-   ptstats->SetParent(phi_ixiy);
+//    Int_t ci;      // for color index setting
+//    TColor *color; // for color definition with alpha
+//    ci = TColor::GetColor("#f9f90e");
+//    palette->SetFillColor(ci);
+//    palette->SetFillStyle(1001);
+//    phi_ixiy->GetListOfFunctions()->Add(palette,"br");
+//    
+//    TPaveStats *ptstats = new TPaveStats(0.78,0.695,0.98,0.935,"brNDC");
+//    ptstats->SetName("stats");
+//    ptstats->SetBorderSize(1);
+//    ptstats->SetFillColor(0);
+//    ptstats->SetTextAlign(12);
+//    ptstats->SetTextFont(42);
+// //    TText *ptstats_LaTex = ptstats->AddText("phi_ixiy");
+// //    ptstats_LaTex->SetTextSize(0.0368);
+// //    ptstats_LaTex = ptstats->AddText("Entries = 10000  ");
+// //    ptstats_LaTex = ptstats->AddText("Mean x =  71.78");
+// //    ptstats_LaTex = ptstats->AddText("Mean y = 1.625e+07");
+// //    ptstats_LaTex = ptstats->AddText("Std Dev x =   7.03");
+// //    ptstats_LaTex = ptstats->AddText("Std Dev y = 1.625e+07");
+//    ptstats->SetOptStat(1111);
+//    ptstats->SetOptFit(0);
+//    ptstats->Draw();
+//    phi_ixiy->GetListOfFunctions()->Add(ptstats);
+//    ptstats->SetParent(phi_ixiy);
    phi_ixiy->SetLineWidth(2);
    phi_ixiy->SetMarkerStyle(8);
    phi_ixiy->SetMarkerSize(0.9);
