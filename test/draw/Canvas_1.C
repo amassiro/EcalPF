@@ -7432,7 +7432,15 @@ void Canvas_1()
    
    Canvas_1->Update();
 
-      
+   
+   
+   Canvas_1->Modified();
+   Canvas_1->cd();
+   Canvas_1->SetSelected(Canvas_1);
+
+
+   
+   
    TObjArray *conts = (TObjArray*) gROOT->GetListOfSpecials()->FindObject("contours");
    TList* gr_eta_0 =  ((TList*) conts->At(0));
    TList* gr_eta_1 =  ((TList*) conts->At(1));
@@ -7443,7 +7451,17 @@ void Canvas_1()
    TList* gr_eta_6 =  ((TList*) conts->At(6));
    TList* gr_eta_7 =  ((TList*) conts->At(7));
 
-  
+   TCanvas *Canvas_2 = new TCanvas("Canvas_2", "Canvas_2",800,800);
+   Canvas_2->Range(-12,-12,113,113);
+   Canvas_2->SetFillColor(0);
+   Canvas_2->SetBorderMode(0);
+   Canvas_2->SetBorderSize(2);
+   Canvas_2->SetFrameBorderMode(0);
+   Canvas_2->SetFrameBorderMode(0);
+   
+     eta_ixiy->Draw("colz");
+
+     
    for(const TObject* tmp: *gr_eta_0){
       TGraph* obj = (TGraph*) tmp;
       obj->SetLineWidth(2);
@@ -7512,7 +7530,7 @@ void Canvas_1()
    
    
    
-   Canvas_1->Modified();
-   Canvas_1->cd();
-   Canvas_1->SetSelected(Canvas_1);
+   Canvas_2->Modified();
+   Canvas_2->cd();
+   Canvas_2->SetSelected(Canvas_2);
 }
